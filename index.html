@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #bbcec8; /* Change to your preferred color */
+        }
+        h1 {
+            font-size: 3em; /* Adjust size as needed */
+            color: green;
+            text-align: center;
+        }
+        .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#header-icon {
+    height: 45px; /* Adjust as needed */
+    width: 45px; /* Adjust as needed */
+    position: absolute;
+    right: 10px; /* Adjust as needed */
+}
+        h2 {
+            font-size: 2em; /* Adjust size as needed */
+            color: green;
+            text-align: center;
+            margin-top: -20px; /* Adjust size as needed */
+        }
+        
+        hr {
+            margin-top: 20px; /* Adjust size as needed */
+        }
+        .center {
+            text-align: center;
+        }
+        .center a, .center div {
+            display: inline-block;
+        }
+        .dropdown {
+            display: inline-block;
+        }
+        .carousel {
+          position: absolute;
+    top: 74%; /* Increase this percentage to move the carousel further down */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 600px;
+        }
+        .carousel img {
+            width: 800px;
+            height: auto;
+            
+        }
+        .carousel button {
+            position: absolute;
+            top: 50%;
+            background: none;
+            border: none;
+            font-size: 2em;
+            padding: 10px;
+            color: white;
+            background: rgba(0,0,0,0.5);
+        }
+        .carousel button.prev {
+            left: 0;
+        }
+        .carousel button.next {
+            right: 0;
+        }
+         .dropdown {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+         .large-image {
+        width: 700px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+        
+    }
+   .header-icons {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px; /* Adjust as needed */
+}
+
+#shopping-cart-icon, #person-icon {
+    height: 30px; /* Adjust as needed */
+    width: 30px; /* Adjust as needed */
+    margin-left: 50px; /* Adjust as needed */
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+    <h1>Welcome to F.T Fresh Produce</h1>
+    <div class="header-icons">
+    <img src="images/shoppingcart.png" id="shopping-cart-icon" alt="Shopping Cart">
+    <img src="images/Person 2 Icon.png" id="person-icon" alt="Login">
+</div>
+</div> 
+    
+    <h2>Fresno, CA</h2>
+   
+
+    <form action="/search" method="get">
+        <input type="search" name="q" placeholder="I am shopping for...">
+        <input type="submit" value="Search">
+    </form>
+    <hr>
+    <div class="center">
+        <a href="/home">Home</a> | 
+         <a href="/contact">About Us</a> |
+          <a href="/shop">Shop</a> |
+          <a href="/faq">FAQ</a> |
+        <a href="/contact">Contact Us</a>
+    </div>
+    <br>
+     <div class="carousel">
+        <img src="images/Owner-F.T Fresh Produce.png" alt="images/Owner-F.T Fresh Produce"  class="large-image">
+        <button class="prev">&lt;</button>
+        <button class="next">&gt;</button>
+    </div>
+    <script>
+        var images = ['images/Owner-F.T Fresh Produce.png', 'images/TwoLadies-F.T Fresh Produce.png']; // Add more images as needed
+        var index = 0;
+        var imgElement = document.querySelector('.carousel img');
+        var prevButton = document.querySelector('.carousel .prev');
+        var nextButton = document.querySelector('.carousel .next');
+
+        function updateImage() {
+            imgElement.src = images[index];
+        }
+
+        prevButton.addEventListener('click', function() {
+            index = (index - 1 + images.length) % images.length;
+            updateImage();
+        });
+
+        nextButton.addEventListener('click', function() {
+            index = (index + 1) % images.length;
+            updateImage();
+        });
+    </script>
+</body>
+</html>
