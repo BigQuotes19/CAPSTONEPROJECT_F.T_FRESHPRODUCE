@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inquiry Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+        }
+
+        input,
+        textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+             margin-bottom: 20px; /* Add this */
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px; /* Add this */
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <br>
+    <div class="form-container">
+        <br>
+        <h2>Inquiry Form</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+
+            <label for="inquiry">Inquiry:</label>
+            <textarea id="inquiry" name="inquiry" rows="5" required></textarea>
+
+<button type="button" id="createButton">Submit</button>
+        </form>
+    </div>
+</body>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBuTlHAnE1Q1YimuMO_VmqXfRGxP0h1E8M",
+  authDomain: "capstoneprojectftp.firebaseapp.com",
+  projectId: "capstoneprojectftp",
+  storageBucket: "capstoneprojectftp.appspot.com",
+  messagingSenderId: "137884357037",
+  appId: "1:137884357037:web:d8381110ef9681c263d124",
+  measurementId: "G-SQXXDWNRTL"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+// Add styling for the page
+const style = document.createElement('style');
+style.innerHTML = `
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-bottom: 10px;
+    }
+
+    input,
+    textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+`;
+
+document.head.appendChild(style);
+const db = getDatabase();
+
+function addData() {
+  let name = document.getElementById('name');
+  let email = document.getElementById('email');
+  let inquiry = document.getElementById('inquiry');
+
+
+  set(ref(db, 'userinquiry/' + name.value), {
+    name: name.value,
+    email: email.value,
+    inquiry: inquiry.value
+  })
+  .then(() => {
+    alert('Your inquiry has been successfully submitted and we will respond to you shortly. Thank you!');
+
+    // Navigate to index.html  
+    window.location.href = 'index.html';
+  })
+  .catch((error) => {
+    console.error('Error adding data: ', error);
+  });
+}
+  
+  const createButton = document.getElementById('createButton');
+  createButton.addEventListener('click', addData);
+</script>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 50%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        width: 25%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    p {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+    }
+
+    a {
+        color: #4CAF50;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+<body>
+    <h1>Login</h1>
+    
+    <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        
+       <button type="button" id="loginButton">Login</button>
+    </form>
+    
+    <p>Don't have an account? <a href="createAccount.html">Create one.....</a>.</p>
+</body>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBuTlHAnE1Q1YimuMO_VmqXfRGxP0h1E8M",
+  authDomain: "capstoneprojectftp.firebaseapp.com",
+  projectId: "capstoneprojectftp",
+  storageBucket: "capstoneprojectftp.appspot.com",
+  messagingSenderId: "137884357037",
+  appId: "1:137884357037:web:d8381110ef9681c263d124",
+  measurementId: "G-SQXXDWNRTL"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getDatabase();
+
+function readData() {
+    const dbRef = ref(db);
+    get(child(dbRef, `usercredentials/${username.value}`)).then((snapshot) => {
+ /// const usercredentials = get(ref(db, 'usercredentials/' + username.value)).then((snapshot) => {
+ console.log(username.value);
+
+  if (snapshot.exists()) {
+    console.log('User logged in successfully');
+    localStorage.setItem('username', username.value);
+    // Navigate to index.html
+    window.location.href = 'index.html';
+  } else {
+    console.log('No data available');
+  }
+
+    });
+}
+  const loginButton = document.getElementById('loginButton');
+  loginButton.addEventListener('click', readData);
+</script>
+
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Account</title>
+</head>
+<body>
+    <h1>Create Account</h1>
+    <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <button type="button" id="createButton">Create</button>
+    </form>
+</body>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBuTlHAnE1Q1YimuMO_VmqXfRGxP0h1E8M",
+  authDomain: "capstoneprojectftp.firebaseapp.com",
+  projectId: "capstoneprojectftp",
+  storageBucket: "capstoneprojectftp.appspot.com",
+  messagingSenderId: "137884357037",
+  appId: "1:137884357037:web:d8381110ef9681c263d124",
+  measurementId: "G-SQXXDWNRTL"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+// Add styling for the page
+const style = document.createElement('style');
+style.innerHTML = `
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    form {
+        background-color: #fff;
+        width: 40%;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 50%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+`;
+document.head.appendChild(style);
+const db = getDatabase();
+
+function addData() {
+  let username = document.getElementById('username');
+  let password = document.getElementById('password');
+
+  set(ref(db, 'usercredentials/' + username.value), {
+    username: username.value,
+    password: password.value
+  })
+  .then(() => {
+    alert('User data added successfully');
+     localStorage.setItem('username', username.value);
+    // Navigate to index.html
+    
+    window.location.href = 'index.html';
+  })
+  .catch((error) => {
+    console.error('Error adding data: ', error);
+  });
+}
+  
+  const createButton = document.getElementById('createButton');
+  createButton.addEventListener('click', addData);
+</script>
+
+</html>
