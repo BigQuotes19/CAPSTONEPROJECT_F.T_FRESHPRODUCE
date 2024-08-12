@@ -5,7 +5,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #88a586;
+            background-color: #e5eeeb;
             color: #333;
             padding: 20px;
         }
@@ -31,7 +31,7 @@
             padding-left: 0; /* Remove the default left padding */
         }
         li {
-            font-size: 1.0em;
+            font-size: 1.2em;
             line-height: 1.6;
             text-align: left; /* Align the list items to the left */
             list-style-position: inside; /* Move the bullet inside the list item */
@@ -39,7 +39,19 @@
         .centered {
             text-align: center; /* Center the content inside the div */
         }
-    </style>
+        
+    .row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Creates 3 columns */
+            grid-gap: 20px; /* Adjust the gap between columns as needed */
+        }
+        .column {
+            display: flex;
+            flex-direction: column;
+            text-align: center; /* Center the content inside the div */
+        }
+</style>
+    
 </head>
 <body>
     <h1>About Us</h1>
@@ -51,25 +63,40 @@
     <p>Our family has been farming for many years. We are proud to provide fresh and healthy produces to our customers.</p>
     <p>Our farm is located in the heart of Central Valley of California. We have a large farm with many acres of land.</p>
         <p>We grow a variety of fruits and vegetables. We have a large selection of asian fruits and vegetables.</p>
-        <div class="centered">
+        
+            <div class="row">
+            <div class="column">
             <ul>
-            <li>Guavas</li>
-            <li>Peaches</li>
-            <li>Jujubees</li>
-            <li>Thai basil</li>
-            <li>Dill</li>
-            <li>Diakon</li>
-            <li>Sugar snap pees</li>
-            <li>Chinese broccoli</li>
-            <li>Bitter melon</li>
-            <li>Lemon basil</li>
-            <li>Mustard green</li>
-            <li>sun choy</li>
-            <li>water spinach</li>
-            <li>Cilantro</li>
-            <li>And many more........</li>
-            <li>Chinese eggplant</li>
+                <li>Guavas</li>
+                <li>Peaches</li>
+                <li>Jujubees</li>
+                <li>Thai basil</li>
+                <li>Dill</li>
+                
             </ul>
+            </div>
+            <div class="column">
+            <ul>
+                
+                <li>Sugar snap peas</li>
+                <li>Chinese broccoli</li>
+                <li>Bitter melon</li>
+                <li>Lemon basil</li>
+                <li>Mustard green</li>
+               
+            </ul>
+            </div>
+            <div class="column">
+            <ul>
+                <li>Diakon</li>
+                <li>Water spinach</li>
+                <li>Cilantro</li>
+                <li>Chinese eggplant</li>
+                <li>And many more........</li>
+            </ul>
+            </div>
+    
+            
         </div>
         </body>
         </html>
