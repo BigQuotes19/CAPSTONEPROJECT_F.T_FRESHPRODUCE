@@ -7,10 +7,13 @@ Project Console: https://console.firebase.google.com/project/capstoneprojectftp/
 Hosting URL: https://capstoneprojectftp.web.app 
 Realtime database: https://console.firebase.google.com/project/capstoneprojectftp/overview?pli=1
 
-git pull
-make changes
+https://github.com/BigQuotes19
+
+git commands =>
+git pull //to pull latest changes
+after making any make changes to your repo
 git stash
-git commit -m "update ReadME"
+git commit -m "add the message"
 git push https://github.com/BigQuotes19/CapstoneProject_F.T-FreshProduce.git
 
 -->
